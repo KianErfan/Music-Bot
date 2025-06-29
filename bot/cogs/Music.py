@@ -261,7 +261,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "host": "",
                 "port": 2333,
                 "rest_uri": "http://:2333",
-                "password": "youshallnotpass",
+                "password": "Password",
                 "identifier": "MAIN",
                 "region": "europe",
             }
