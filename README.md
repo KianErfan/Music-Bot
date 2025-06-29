@@ -1,37 +1,75 @@
-# heroku-lavalink
-Easily deploy a lavalink server on heroku.
-This is a very elementary and barebones approach, but reliable nonetheless.
-This branch will automatically download the latest Lavalink jar file.
+# Discord Music Bot 🎵
 
-### *heroku-lavalink will now download the latest Lavalink.jar automatically & directly from GitHub*
-*To update your Lavalink.jar, restart all dynos (faster) or redeploy.*
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
+[![Python](https://img.shields.io/badge/python-3.6%2B-3670A0?logo=python&logoColor=ffdd54)](https://www.python.org/downloads/)
+[![Discord.py](https://img.shields.io/badge/discord.py-1.5.1-%237289DA?logo=discord&logoColor=white)](https://discordpy.readthedocs.io/)
+[![Lavalink](https://img.shields.io/badge/Lavalink-3.1.3-13aa52?logo=node.js&logoColor=white)](https://github.com/Frederikam/Lavalink)
 
-### One Click Deploy:
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/KareemRS/heroku-lavalink/tree/auto)
+A feature-rich Discord music bot built with Python, Discord.py, and Lavalink. Stream high-quality audio from YouTube, manage playlists, and control playback with intuitive commands.
 
-Buildpacks should be added automatically, you may modify the `PASS` variable during setup to change the password.
+## Features ✨
+- High-quality audio streaming via Lavalink
+- Playlist management with queue system
+- Track selection interface with reactions
+- Playback controls (play, pause, skip, stop)
+- Queue shuffling and repeat modes
+- Voice channel auto-cleanup when empty
+- Customizable prefix and configurations
 
-### Github Deploy:
-1. Create a fork of this repo
-2. Navigate to your heroku project @dashboard.heroku.com
-3. Navigate to your project *"Settings"*, click *"Reaveal Config Vars"*, and set a new var called *PASS* to what you want your lavalink password to be.
-4. In the same menu, set a new var called JAVA_TOOL_OPTIONS and set it to "-XX:+UseContainerSupport -Xmx500m -Xss256k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8" without the "" , this will set ram to max on a free dyno
-5. Navigate to the *"Deploy"* tab
-6. Find/Click the *"Connect to GitHub"* section and login if needed
-7. For the repo name, type *"heroku-lavalink"* and Click *"Search"*
-8. Click *"Connect"* 
-9. Scroll down and find *"Manual Deploy"*, then switch the branch to auto and *"Deploy Branch"*.
+## Setup Guide 🚀
 
-### Heroku CLI Deploy:
-1. Download files (Clone or download->Download ZIP).
-2. Extract files into an empty directory.
-3. Follow https://devcenter.heroku.com/articles/git.
-If heroku is unable to automatically configure buildpacks, go to your projects settings on the heroku website and add java and nodejs.
-4. Go to your project settings->config vars on heroku and set a new var called PASS to what you want your lavalink password to be.
-5. In the same menu, set a new var called JAVA_TOOL_OPTIONS and set it to "-XX:+UseContainerSupport -Xmx500m -Xss256k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8" without the "" , this will set ram to max on a free dyno
+### Prerequisites
+1. Python 3.6+ (recommended 3.8+)
+2. Discord Bot Token ([create here](https://discord.com/developers/applications))
+3. Lavalink server ([deploy guide](#lavalink-setup))
+4. FFmpeg installed and in PATH
 
-**Notes:** 
-1. After changing PASS you must redeploy or click the More menu and *restart all dynos*.
-2. If heroku is unable to automatically configure buildpacks, go to your projects settings on the heroku website and add java and nodejs.
+### Installation
+```bash
+git clone https://github.com/KianErfan/Music-Bot.git
+cd Music-Bot
+python -m pip install -r requirements.txt
+```
 
-Please understand your lavalink server ***will most likely run out of memory on a free dyno***. I would recommend upgrading or switching to a lighter alternative. If you do upgrade, you must change -Xmx in the JAVA_TOOL_OPTIONS to your new amount of ram.
+### Configuration
+1. Create token.0 file with your bot token:
+  `YOUR_DISCORD_BOT_TOKEN`
+
+2. Configure Lavalink server details in bot.py:
+```bash
+   nodes = {
+    "MAIN": {
+        "host": "YOUR_LAVALINK_HOST",
+        "port": 2333,
+        "rest_uri": "http://YOUR_LAVALINK_HOST:2333",
+        "password": "YOUR_LAVALINK_PASSWORD",
+        "identifier": "MAIN",
+        "region": "europe",
+    }
+
+}
+```
+
+3. Running the Bot
+  `python launcher.py`
+
+### Commands
+| Command | Aliases | Description | Example |
+|---|---|---|---|
+| `?play` | - | Play a song or resume playback | `?play Believer` |
+| `?connect` | `join` | Join voice channel | `?connect` |
+| `?disconnect` | `leave` | Leave voice channel | `?leave` |
+| `?pause` | - | Pause playback | `?pause` |
+| `?stop` | - | Stop playback and clear queue | `?stop` |
+| `?next` | `skip` | Skip current track | `?skip` |
+| `?previous` | - | Play previous track | `?previous` |
+| `?shuffle` | - | Shuffle the queue | `?shuffle` |
+| `?repeat` | - | Set repeat mode [none/1/all] | `?repeat all` |
+| `?queue` | - | Show current queue | `?queue 5` |
+
+### License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+
+
